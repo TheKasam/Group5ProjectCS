@@ -55,7 +55,7 @@ class GTableViewController: UITableViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     
-    var groceryList = [String: String]()
+    var groceryList = [String]()
     var inventory: [String]! = [String]()
     
     override func viewDidLoad() {
@@ -63,10 +63,10 @@ class GTableViewController: UITableViewController {
         let user = Auth.auth().currentUser
         let databaseRef = Database.database().reference().child("user").child((user?.uid)!).child("groceryList")
         databaseRef.observe(.value, with: {snapshot in
-            var newItems = [String: String]()
+            var newItems = [String]()
             let groceries = snapshot.value as? [String : AnyObject] ?? [:]
             for i in groceries {
-                newItems[i.key] =  i.value as? String
+                newItems.append(i.value as! String)
             }
             
             self.groceryList = newItems
@@ -82,7 +82,7 @@ class GTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let user = Auth.auth().currentUser
-            Database.database().reference().child("user").child((user?.uid)!).child("groceryList").child().removeValue()
+            let databaseRef = Database.database().reference().child("user").child((user?.uid)!).child("groceryList")
             inventory.append(groceryList[indexPath.row-1])
             groceryList.remove(at: indexPath.row-1)
             tableView.reloadData()
