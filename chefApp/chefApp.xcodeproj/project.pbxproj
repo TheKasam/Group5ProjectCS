@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F74E1E34ABEBF10A3DFAB83 /* Pods_chefApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F433FF307226B4468787B039 /* Pods_chefApp.framework */; };
+		732E465120964A5500657C77 /* RecipesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E464F20964A5500657C77 /* RecipesCollectionViewCell.swift */; };
+		732E465220964A5500657C77 /* RecipesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E465020964A5500657C77 /* RecipesController.swift */; };
 		A6428E3620803F02000A221E /* signinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6428E3520803F02000A221E /* signinViewController.swift */; };
 		A6428E3820803F0C000A221E /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6428E3720803F0C000A221E /* signupViewController.swift */; };
 		A6428E3A208049F6000A221E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6428E39208049F6000A221E /* GoogleService-Info.plist */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		408782C06E702502D594F2E6 /* Pods-chefApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chefApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-chefApp/Pods-chefApp.release.xcconfig"; sourceTree = "<group>"; };
 		71606241D05EE762BA11D76B /* Pods-chefApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chefApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-chefApp/Pods-chefApp.debug.xcconfig"; sourceTree = "<group>"; };
+		732E464F20964A5500657C77 /* RecipesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesCollectionViewCell.swift; sourceTree = "<group>"; };
+		732E465020964A5500657C77 /* RecipesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesController.swift; sourceTree = "<group>"; };
 		A6428E3520803F02000A221E /* signinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signinViewController.swift; sourceTree = "<group>"; };
 		A6428E3720803F0C000A221E /* signupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		A6428E39208049F6000A221E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -48,6 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		732E465320964A6100657C77 /* Recipies */ = {
+			isa = PBXGroup;
+			children = (
+				732E465020964A5500657C77 /* RecipesController.swift */,
+				732E464F20964A5500657C77 /* RecipesCollectionViewCell.swift */,
+			);
+			path = Recipies;
+			sourceTree = "<group>";
+		};
 		A6F10A90207D7658001677BC = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +82,7 @@
 		A6F10A9B207D7659001677BC /* chefApp */ = {
 			isa = PBXGroup;
 			children = (
+				732E465320964A6100657C77 /* Recipies */,
 				A6F10A9C207D7659001677BC /* AppDelegate.swift */,
 				A6428E3520803F02000A221E /* signinViewController.swift */,
 				A6428E3720803F0C000A221E /* signupViewController.swift */,
@@ -243,6 +257,8 @@
 			files = (
 				D80115E92080602200D55277 /* settingsViewController.swift in Sources */,
 				A6428E3620803F02000A221E /* signinViewController.swift in Sources */,
+				732E465220964A5500657C77 /* RecipesController.swift in Sources */,
+				732E465120964A5500657C77 /* RecipesCollectionViewCell.swift in Sources */,
 				A6F10A9D207D7659001677BC /* AppDelegate.swift in Sources */,
 				A6428E3820803F0C000A221E /* signupViewController.swift in Sources */,
 				A6F10AAF207D76A1001677BC /* GTableViewController.swift in Sources */,
