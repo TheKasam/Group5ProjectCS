@@ -7,21 +7,31 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class settingsViewController: UIViewController {
-
+    
     @IBAction func signOut(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController: UIViewController = storyBoard.instantiateViewController(withIdentifier: "signup")
+            self.present(newViewController, animated: true)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "signup") as! signinViewController
-        self.present(newViewController, animated: true)
+        
     }
+    
+    @IBAction func resetPassword(_ sender: Any) {
+        let user = Auth.auth().currentUser
+        Auth.auth().sendPasswordReset(withEmail: (user?.email)!) { (error) in
+            // ...
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

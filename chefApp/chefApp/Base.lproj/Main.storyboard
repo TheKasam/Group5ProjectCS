@@ -30,6 +30,14 @@
                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-d6-e29">
+                                    <rect key="frame" x="41" y="23" width="30" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="hi"/>
+                                    <connections>
+                                        <segue destination="TtR-fk-xqj" kind="show" id="seL-va-dKE"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.8901960784313725" green="0.0" blue="0.0" alpha="0.57999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" red="0.65939770578282075" green="0.66592639593908631" blue="0.66592639593908631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -162,7 +170,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="P1d-qg-3Xd" kind="show" identifier="needToSignUp" id="QGD-UG-DH9"/>
+                                    <segue destination="P1d-qg-3Xd" kind="show" id="S0I-sm-zI1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-HK-dzu">
@@ -179,6 +187,9 @@
                                 <state key="normal" image="btn_google_signin_light_normal_web">
                                     <color key="titleColor" red="0.57402785040000004" green="0.57971129440000002" blue="0.57971129440000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="gSingIn:" destination="X70-eH-LYs" eventType="touchUpInside" id="6YE-kA-pKT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -212,7 +223,6 @@
                     <navigationItem key="navigationItem" id="Ygo-uh-xod"/>
                     <connections>
                         <outlet property="errorLabel" destination="L3O-HK-dzu" id="IIN-HQ-Rb9"/>
-                        <outlet property="signInButton" destination="HeE-0G-FD3" id="stx-Ca-6v3"/>
                         <outlet property="signInEmail" destination="Baw-5I-Or8" id="CpS-FZ-Gqa"/>
                         <outlet property="signInPassword" destination="vYj-Ah-wuf" id="6bL-6I-s5A"/>
                         <outlet property="signin" destination="3E1-zG-ZaK" id="b0Q-xu-Afu"/>
@@ -305,6 +315,9 @@
                                 <state key="normal" image="btn_google_signin_light_normal_web">
                                     <color key="titleColor" red="0.57402785040000004" green="0.57971129440000002" blue="0.57971129440000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="gSingUp:" destination="P1d-qg-3Xd" eventType="touchUpInside" id="cBh-Z6-hr9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -342,7 +355,6 @@
                     <navigationItem key="navigationItem" id="LE4-Si-e5f"/>
                     <connections>
                         <outlet property="errorLabel" destination="u0x-jg-Kbi" id="3f3-As-8Li"/>
-                        <outlet property="signUpButton" destination="GUS-Qz-Zgi" id="hol-GR-UJN"/>
                         <outlet property="signup" destination="A8d-IZ-U1M" id="fUw-Uc-xsH"/>
                         <outlet property="signupEmail" destination="zYV-JJ-LhM" id="Sg4-0C-VcQ"/>
                         <outlet property="signupName" destination="ZY3-fN-gvm" id="agE-gT-UwH"/>
@@ -366,6 +378,14 @@
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOut:" destination="TtR-fk-xqj" eventType="touchUpInside" id="tT5-Rt-iWW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzy-VU-y2H">
+                                <rect key="frame" x="134" y="391" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset Password"/>
+                                <connections>
+                                    <action selector="resetPassword:" destination="TtR-fk-xqj" eventType="touchUpInside" id="Q3g-Yc-OhL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -634,7 +654,4 @@
         <image name="image1" width="175" height="159"/>
         <image name="stars" width="92" height="16"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="QGD-UG-DH9"/>
-    </inferredMetricsTieBreakers>
 </document>

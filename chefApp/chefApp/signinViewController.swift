@@ -11,15 +11,17 @@ import FirebaseAuth
 import FirebaseDatabase
 import GoogleSignIn
 
-
-class signinViewController: UIViewController, GIDSignInUIDelegate  { 
+class signinViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate  {
 
     
     @IBOutlet weak var signInEmail: UITextField!
     @IBOutlet weak var signInPassword: UITextField!
     @IBOutlet weak var signin: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBAction func gSingIn(_ sender: Any) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
     
     var ref: DatabaseReference!
     
@@ -28,14 +30,27 @@ class signinViewController: UIViewController, GIDSignInUIDelegate  {
         
         ref = Database.database().reference()
         signin.layer.cornerRadius = 20
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
+        
+        self.signInEmail.delegate = self
+        self.signInPassword.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // hide keyboard when user taps outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    // hide keyboard when user taps return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        signInEmail.resignFirstResponder()
+        signInPassword.resignFirstResponder()
+        return(true)
+    }
+    
     
     @IBAction func signinFire(_ sender: Any) {
         Auth.auth().signIn(withEmail: signInEmail.text!, password: signInPassword.text!) { (user, error) in
@@ -50,18 +65,4 @@ class signinViewController: UIViewController, GIDSignInUIDelegate  {
             }
         }
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 } 

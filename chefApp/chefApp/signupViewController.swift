@@ -11,37 +11,48 @@ import FirebaseAuth
 import FirebaseDatabase
 import GoogleSignIn
 
-class signupViewController: UIViewController, GIDSignInUIDelegate {
+class signupViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
 
    
     @IBOutlet weak var signupName: UITextField!
     @IBOutlet weak var signup: UIButton!
     @IBOutlet weak var signupEmail: UITextField!
     @IBOutlet weak var signupPassword: UITextField!
+    @IBAction func gSingUp(_ sender: Any) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
     
-    @IBOutlet weak var signUpButton: GIDSignInButton!
-
     @IBOutlet weak var errorLabel: UILabel!
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.signupEmail.delegate = self
+        self.signupPassword.delegate = self
         
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
         ref = Database.database().reference()
         signup.layer.cornerRadius = 20
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    // hide keyboard when user taps outside keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // hide keyboard when user taps return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        signupEmail.resignFirstResponder()
+        signupPassword.resignFirstResponder()
+        return(true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func signupFire(_ sender: Any) {
-        
         Auth.auth().createUser(withEmail: signupEmail.text!, password: signupPassword.text!) { (user, error) in
             if user?.uid != nil {
                 self.ref.child("users").child((user?.uid)!).setValue(["name": self.signupName.text])
@@ -53,21 +64,6 @@ class signupViewController: UIViewController, GIDSignInUIDelegate {
             else {
                 self.errorLabel.text = "Done Goofed"
             }
-            
         }
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
