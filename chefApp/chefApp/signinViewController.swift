@@ -9,25 +9,27 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import GoogleSignIn
 
 
-class signinViewController: UIViewController  { 
+class signinViewController: UIViewController, GIDSignInUIDelegate  { 
 
     
     @IBOutlet weak var signInEmail: UITextField!
     @IBOutlet weak var signInPassword: UITextField!
     @IBOutlet weak var signin: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    
     var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = Database.database().reference()
-        
         signin.layer.cornerRadius = 20
-        
-        // Do any additional setup after loading the view.
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     override func didReceiveMemoryWarning() {

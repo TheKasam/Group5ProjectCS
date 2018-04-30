@@ -9,14 +9,17 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import GoogleSignIn
 
-class signupViewController: UIViewController {
+class signupViewController: UIViewController, GIDSignInUIDelegate {
 
    
     @IBOutlet weak var signupName: UITextField!
     @IBOutlet weak var signup: UIButton!
     @IBOutlet weak var signupEmail: UITextField!
     @IBOutlet weak var signupPassword: UITextField!
+    
+    @IBOutlet weak var signUpButton: GIDSignInButton!
 
     @IBOutlet weak var errorLabel: UILabel!
     var ref: DatabaseReference!
@@ -24,8 +27,9 @@ class signupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
         ref = Database.database().reference()
-        
         signup.layer.cornerRadius = 20
         
         // Do any additional setup after loading the view.
