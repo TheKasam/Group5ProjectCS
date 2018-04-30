@@ -13,7 +13,7 @@ private let reuseIdentifier = "recipeCell"
 
 class RecipesController: UICollectionViewController {
     var recipeArray_list = [Recipes]()
-
+    var recipeArray2d  = [[Recipes]]()
 
     var API_KEY: String = ""
     
@@ -48,6 +48,7 @@ class RecipesController: UICollectionViewController {
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
         
+        
         getData()
     }
 
@@ -69,7 +70,8 @@ class RecipesController: UICollectionViewController {
             
             //Obtaining arraylist of Recipes from the given dictionaryu array of recipes
             recipeArray_list = Recipes.modelsFromDictionaryArray(array: recipeArray as NSArray)
-            recipeTableView.reloadData()
+            recipeArray2d = convertTo2D(recipeArray_list)
+            collectionView?.reloadData()
             
         } catch {
             print("Could not parse the data as JSON: '\(data)'")
@@ -77,21 +79,32 @@ class RecipesController: UICollectionViewController {
         }
         
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    func convertTo2D(_ recipeArray_list : [Recipes]) -> [[Recipes]] {
+        //convert List into two d list
+        var recipeArray2d = [[Recipes]]()
+        var recipeIndex = 0
+        print(recipeArray_list.count)
+        
+        for _ in 0..<(recipeArray_list.count)/2{
+            var smallList = [Recipes]()
+
+            smallList.append(recipeArray_list[recipeIndex])
+            recipeIndex += 1
+            smallList.append(recipeArray_list[recipeIndex])
+            recipeIndex += 1
+        
+            recipeArray2d.append(smallList)
+        }
+        
+        return recipeArray2d
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return   recipeArray_list.count / 2
     }
 
 
@@ -103,12 +116,38 @@ class RecipesController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RecipesCollectionViewCell
     
+        
+        
+
         // Configure the cell
+        let dish = recipeArray2d[indexPath.section][indexPath.row]
+        cell.title.text = dish.title
+        
+        //Load Image icon
+        let imageURL = URL(string: dish.image_url!)
+        print(imageURL)
+        Alamofire.request(imageURL!).responseJSON {response in
+            let imageData = response.data!
+            let downloadImage = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                cell.image.image = downloadImage
+            }
+        }
         
     
         return cell
     }
 
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     // MARK: UICollectionViewDelegate
 
     /*

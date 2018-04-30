@@ -57,7 +57,7 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.2.0)
+  - Alamofire
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -80,6 +80,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 115d37da4953e5b59e4d26453619914e21326f2b
+PODFILE CHECKSUM: a6edf2ea6d671e6d0d46a57fc3d14ee6d458d892
 
 COCOAPODS: 1.4.0
