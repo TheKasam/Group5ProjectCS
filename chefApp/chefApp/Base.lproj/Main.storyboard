@@ -420,7 +420,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipeCell" id="Ppu-yM-S8K" customClass="RecipesCollectionViewCell" customModule="cs329" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipeCell" id="Ppu-yM-S8K" customClass="RecipesCollectionViewCell" customModule="chefApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="175" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -445,6 +445,10 @@
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="image" destination="JBU-jH-0Wn" id="9mB-62-11h"/>
+                                    <outlet property="title" destination="9ud-vd-ycf" id="mmc-Gl-ZNJ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -628,4 +632,7 @@
         <image name="image1" width="175" height="159"/>
         <image name="stars" width="92" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XaI-Yk-ubm"/>
+    </inferredMetricsTieBreakers>
 </document>

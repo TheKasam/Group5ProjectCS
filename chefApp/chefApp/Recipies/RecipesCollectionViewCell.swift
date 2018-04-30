@@ -10,6 +10,8 @@ import UIKit
 
 class RecipesCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var title: UILabel!
     
     override func didMoveToWindow() {
         self.contentView.layer.cornerRadius = 2.0

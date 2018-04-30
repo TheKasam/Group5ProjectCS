@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 private let reuseIdentifier = "recipeCell"
 
 class RecipesController: UICollectionViewController {
+    var recipeArray_list = [Recipes]()
+
 
     var API_KEY: String = ""
     
@@ -44,13 +47,36 @@ class RecipesController: UICollectionViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
+        
+        getData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // To get the data from the food2forkapi call using Alamofire framework
+    func getData()
+    {
+        Alamofire.request("https://food2fork.com/api/search?key=571b59e87af50037585a26ff3ad761eb&q=pizza").responseJSON {response in
+            self.toObjects(data: response.data!)
+        }
     }
 
+    //converting the response data to recipe model object
+    func toObjects(data: Data)
+    {
+        let recipeResult: [String:AnyObject]!
+        do {
+            recipeResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+            let recipeArray =  recipeResult["recipes"] as! [AnyObject]
+            
+            //Obtaining arraylist of Recipes from the given dictionaryu array of recipes
+            recipeArray_list = Recipes.modelsFromDictionaryArray(array: recipeArray as NSArray)
+            recipeTableView.reloadData()
+            
+        } catch {
+            print("Could not parse the data as JSON: '\(data)'")
+            return
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
